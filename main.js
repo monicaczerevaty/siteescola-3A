@@ -16,8 +16,16 @@ const tempoObjetivo2 = new Date("2024-12-07T00:00:00");
 const tempoObjetivo3 = new Date("2024-12-07T00:00:00");
 const tempoObjetivo4 = new Date("2024-12-07T00:00:00");
 const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
-for (let i = 0; i<contadores.length; i++) {}
-contadores[0].textContent = cauculaTempo(tempoObjetivo1);
+function atualizaCronometro(){
+for (let i = 0; i<contadores.length; i++) {
+contadores[i].textContent = cauculaTempo(tempos[i]);
+}
+}
+function comecaCronometro(){
+    atualizaCronometro();
+    setInterval(atualizaCronometro,1000);
+}
+comecaCronometro();
 function cauculaTempo(tempoObjetivo){
     let tempoAtual = new Date();
     let tempoFinal = tempoObjetivo - tempoAtual;
@@ -29,5 +37,10 @@ function cauculaTempo(tempoObjetivo){
 segundos %=60;
 minutos %=60;
 horas %= 24;
-    return dias + "dias" + horas + "horas" + minutos + "minutos" + segundos + "segundos";
+
+if (tempoFinal > 0){
+   return dias + "dias" + horas + "horas" + minutos + "minutos" + segundos + "segundos";
+}else {
+    return "Prazo finalizado";
+}
 }
