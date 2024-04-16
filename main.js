@@ -17,8 +17,12 @@ const tempoObjetivo3 = new Date("2024-12-07T00:00:00");
 const tempoObjetivo4 = new Date("2024-12-07T00:00:00");
 const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
 function atualizaCronometro(){
+    document.getElementById("dias0"+i).textContent=cauculaTempo(tempos[i])[0];
+    document.getElementById("horas0"+i).textContent=cauculaTempo(tempos[i])[1];
+    document.getElementById("min0"+i).textContent=cauculaTempo(tempos[i])[2];
+    document.getElementById("seg0"+i).textContent=cauculaTempo(tempos[i])[3];
 for (let i = 0; i<contadores.length; i++) {
-contadores[i].textContent = cauculaTempo(tempos[i]);
+//contadores[i].textContent = cauculaTempo(tempos[i]);
 }
 }
 function comecaCronometro(){
@@ -39,8 +43,8 @@ minutos %=60;
 horas %= 24;
 
 if (tempoFinal > 0){
-   return dias + "dias" + horas + "horas" + minutos + "minutos" + segundos + "segundos";
+   return [dias,horas,minutos,segundos];
 }else {
-    return "Prazo finalizado";
+    return [0,0,0,0];
 }
 }
